@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Confirmar Presença – Festa da Clara Luz 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple-deep: #1a0533;
+    --purple-mid: #2d0a5e;
+    --purple-light: #6b3fa0;
+    --gold: #f0d060;
+    --gold-dim: rgba(240,208,96,0.75);
+    --white: #ffffff;
+    --text-muted: rgba(255,255,255,0.65);
+    --card-bg: rgba(255,255,255,0.06);
+    --card-border: rgba(240,208,96,0.2);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--purple-deep);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Stars background ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(80px 80px at 10% 10%, rgba(212,100,220,0.15) 0%, transparent 70%),
+      radial-gradient(120px 120px at 85% 80%, rgba(100,80,200,0.2) 0%, transparent 70%),
+      radial-gradient(200px 200px at 50% 50%, rgba(45,10,94,0.8) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative; z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  /* ── Header ── */
+  .header { text-align: center; margin-bottom: 2rem; }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 9vw, 3.2rem);
+    color: var(--gold);
+    line-height: 1.1;
+    text-shadow: 0 0 32px rgba(240,208,96,0.4);
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+  }
+
+  .info-pill {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(240,208,96,0.1);
+    border: 0.5px solid var(--card-border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    color: var(--gold);
+    margin: 4px;
+  }
+
+  .divider {
+    width: 48px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+    margin: 1.5rem auto;
+  }
+
+  /* ── Card ── */
+  .card {
+    background: var(--card-bg);
+    border: 0.5px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .card-title {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  /* ── Form ── */
+  .field { margin-bottom: 1.1rem; }
+  .field label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .field input, .field textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 0.5px solid rgba(240,208,96,0.25);
+    border-radius: var(--radius-sm);
+    padding: 11px 14px;
+    font-size: 15px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: none;
+  }
+  .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .field input:focus, .field textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(240,208,96,0.12);
+  }
+
+  .radio-group { display: flex; gap: 8px; }
+  .radio-opt {
+    flex: 1; padding: 11px 8px;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(240,208,96,0.2);
+    border-radius: var(--radius-sm);
+    text-align: center; cursor: pointer;
+    font-size: 14px; color: var(--text-muted);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .radio-opt.selected {
+    background: rgba(240,208,96,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--gold);
+    color: var(--purple-deep);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.03em;
+    transition: opacity 0.15s, transform 0.1s;
+    margin-top: 0.5rem;
+  }
+  .btn:hover { opacity: 0.92; }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ── Success ── */
+  .success-wrap { text-align: center; }
+  .success-icon { font-size: 3.5rem; margin-bottom: 1rem; display: block; animation: pop 0.4s ease; }
+  @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 80% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+  .success-wrap h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .success-wrap p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+  /* ── Admin / List ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.25rem; }
+  .stat-box { background: rgba(255,255,255,0.06); border: 0.5px solid var(--card-border); border-radius: var(--radius-sm); padding: 0.9rem 0.5rem; text-align: center; }
+  .stat-num { font-size: 26px; font-weight: 600; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .guest-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+    font-size: 13px;
+    gap: 8px;
+  }
+  .guest-name { font-weight: 500; color: var(--white); font-size: 14px; }
+  .guest-meta { color: var(--text-muted); font-size: 12px; }
+  .badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+  .badge-yes { background: rgba(100,220,130,0.15); color: #6adc82; border: 0.5px solid rgba(100,220,130,0.3); }
+  .badge-no { background: rgba(230,80,80,0.15); color: #e86060; border: 0.5px solid rgba(230,80,80,0.3); }
+
+  /* ── Navigation ── */
+  .nav-link {
+    display: block; text-align: center;
+    background: none; border: none;
+    color: var(--text-muted); font-size: 13px;
+    cursor: pointer; font-family: 'Inter', sans-serif;
+    text-decoration: underline; text-underline-offset: 3px;
+    margin-top: 1.25rem;
+    transition: color 0.15s;
+  }
+  .nav-link:hover { color: var(--gold-dim); }
+
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; color: var(--text-muted);
+    font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif;
+    margin-bottom: 1rem; padding: 0;
+  }
+
+  .empty-state { text-align: center; color: var(--text-muted); font-size: 14px; padding: 1.5rem 0; }
+
+  .error-msg { color: #e86060; font-size: 12px; margin-top: 6px; display: none; }
+  .error-msg.show { display: block; }
+
+  /* ── Screens ── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ── Loading ── */
+  .loader { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 14px; }
+
+  /* ── QR hint ── */
+  .qr-hint {
+    margin-top: 2rem;
+    text-align: center;
+    background: rgba(240,208,96,0.06);
+    border: 0.5px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+  }
+  .qr-hint p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+  .qr-hint .qr-img { margin-bottom: 8px; }
+  .qr-img svg { display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header">
+    <p class="eyebrow">✨ O show vai começar!</p>
+    <h1 class="title">Clara Luz</h1>
+    <p class="subtitle">faz 8 anos — confirme sua presença</p>
+    <div class="info-row">
+      <span class="info-pill">📅 12 de julho</span>
+      <span class="info-pill">🕒 15h</span>
+      <span class="info-pill">📍 Salão do SINTUFSC</span>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════ SCREEN: FORM ═══════════════ -->
+  <div id="screen-form" class="screen active">
+    <div class="card">
+      <p class="card-title">Confirmar presença</p>
+
+      <div class="field">
+        <label>Seu nome</label>
+        <input type="text" id="inp-nome" placeholder="Como você se chama?" autocomplete="off" />
+        <p class="error-msg" id="err-nome">Por favor, informe seu nome.</p>
+      </div>
+
+      <div class="field">
+        <label>Vai poder comparecer?</label>
+        <div class="radio-group">
+          <div class="radio-opt selected" id="opt-sim" onclick="selectPresenca('sim')">🎉 Sim, estarei lá!</div>
+          <div class="radio-opt" id="opt-nao" onclick="selectPresenca('nao')">😢 Não vou poder</div>
+        </div>
+      </div>
+
+      <div id="field-qtd" class="field">
+        <label>Quantas pessoas virão <span style="color:var(--text-muted);font-size:11px">(incluindo você)</span></label>
+        <input type="number" id="inp-qtd" value="1" min="1" max="20" style="width:100px" />
+      </div>
+
+      <div class="field">
+        <label>Mensagem para a Clara <span style="color:var(--text-muted);font-size:11px">(opcional)</span></label>
+        <textarea id="inp-msg" rows="2" placeholder="Um carinho, uma mensagem... ✨"></textarea>
+      </div>
+
+      <button class="btn" id="btn-confirmar" onclick="confirmar()">Confirmar presença</button>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ SCREEN: SUCCESS ═══════════════ -->
+  <div id="screen-success" class="screen">
+    <div class="card">
+      <div class="success-wrap">
+        <span class="success-icon" id="success-icon">🎊</span>
+        <h2 id="success-title">Presença confirmada!</h2>
+        <p id="success-msg"></p>
+      </div>
+    </div>
+    <button class="nav-link" onclick="goForm()">← Confirmar outra pessoa</button>
+  </div>
+
+  <!-- ═══════════════ SCREEN: ADMIN ═══════════════ -->
+  <div id="screen-admin" class="screen">
+    <button class="back-btn" onclick="goForm()">← Voltar ao convite</button>
+
+    <div class="card">
+      <p class="card-title">Lista de confirmados</p>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num" id="stat-sim">–</div>
+          <div class="stat-label">confirmados</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="stat-pessoas">–</div>
+          <div class="stat-label">pessoas</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="stat-nao">–</div>
+          <div class="stat-label">não vão</div>
+        </div>
+      </div>
+
+      <div id="guest-list"><p class="empty-state">Carregando...</p></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ══════════════════════════════════════════
+//  ⚠️  SUBSTITUA PELA URL DO SEU APPS SCRIPT
+// ══════════════════════════════════════════
+const API_URL = "https://script.google.com/macros/s/AKfycbw60tEdIisXvCl7Bs81GOUDsclP9yBiAZqc9XYFWrE1kbqXehbGdi5sbrM1flHwwNzG/exec";
+
+let presenca = 'sim';
+
+// ── UI helpers ──────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function selectPresenca(val) {
+  presenca = val;
+  document.getElementById('opt-sim').className = 'radio-opt' + (val === 'sim' ? ' selected' : '');
+  document.getElementById('opt-nao').className = 'radio-opt' + (val === 'nao' ? ' selected' : '');
+  document.getElementById('field-qtd').style.display = val === 'sim' ? 'block' : 'none';
+}
+
+// ── Form submit ─────────────────────────
+async function confirmar() {
+  const nome = document.getElementById('inp-nome').value.trim();
+  const errNome = document.getElementById('err-nome');
+
+  if (!nome) {
+    errNome.classList.add('show');
+    document.getElementById('inp-nome').focus();
+    return;
+  }
+  errNome.classList.remove('show');
+
+  const qtd = presenca === 'sim' ? (parseInt(document.getElementById('inp-qtd').value) || 1) : 0;
+  const msg = document.getElementById('inp-msg').value.trim();
+
+  const btn = document.getElementById('btn-confirmar');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  try {
+    await fetch(API_URL, {
+      method: 'POST',
+      body: JSON.stringify({ nome, presenca, quantidade: qtd, mensagem: msg })
+    });
+  } catch(e) {
+    console.warn('Erro ao salvar (modo offline?):', e);
+  }
+
+  if (presenca === 'sim') {
+    document.getElementById('success-icon').textContent = '🎊';
+    document.getElementById('success-title').textContent = 'Presença confirmada!';
+    document.getElementById('success-msg').textContent =
+      `Que ótimo, ${nome}! ${qtd > 1 ? `Aguardamos vocês ${qtd} com alegria.` : 'Estamos te esperando.'} Vai ser uma festa incrível! 🥳`;
+  } else {
+    document.getElementById('success-icon').textContent = '💛';
+    document.getElementById('success-title').textContent = 'Que pena!';
+    document.getElementById('success-msg').textContent =
+      `Obrigado por avisar, ${nome}. Você vai fazer falta! Feliz em saber que pensou na Clara. 💛`;
+  }
+
+  // Reset form
+  document.getElementById('inp-nome').value = '';
+  document.getElementById('inp-msg').value = '';
+  document.getElementById('inp-qtd').value = '1';
+  selectPresenca('sim');
+  btn.disabled = false;
+  btn.textContent = 'Confirmar presença';
+
+  showScreen('screen-success');
+}
+
+// ── Admin list ──────────────────────────
+async function goAdmin() {
+  showScreen('screen-admin');
+  document.getElementById('guest-list').innerHTML = '<p class="empty-state">Carregando...</p>';
+
+  try {
+    const res = await fetch(API_URL + '?action=list');
+    const data = await res.json();
+
+    const confirmados = data.guests.filter(g => g.presenca === '✅ Confirmado');
+    const nao = data.guests.filter(g => g.presenca !== '✅ Confirmado');
+
+    document.getElementById('stat-sim').textContent = confirmados.length;
+    document.getElementById('stat-pessoas').textContent = data.total_pessoas || 0;
+    document.getElementById('stat-nao').textContent = nao.length;
+
+    if (!data.guests.length) {
+      document.getElementById('guest-list').innerHTML = '<p class="empty-state">Nenhuma confirmação ainda 🎈</p>';
+      return;
+    }
+
+    document.getElementById('guest-list').innerHTML = data.guests.map(g => {
+      const confirmed = g.presenca === '✅ Confirmado';
+      return `<div class="guest-item">
+        <div>
+          <div class="guest-name">${g.nome}</div>
+          ${confirmed && g.quantidade > 1 ? `<div class="guest-meta">${g.quantidade} pessoas · ${g.data}</div>` : `<div class="guest-meta">${g.data}</div>`}
+          ${g.mensagem ? `<div class="guest-meta" style="margin-top:2px;font-style:italic">"${g.mensagem}"</div>` : ''}
+        </div>
+        <span class="badge ${confirmed ? 'badge-yes' : 'badge-no'}">${confirmed ? 'Confirmado' : 'Não vai'}</span>
+      </div>`;
+    }).join('');
+
+  } catch(e) {
+    document.getElementById('guest-list').innerHTML = '<p class="empty-state">Não foi possível carregar. Verifique a URL da API.</p>';
+  }
+}
+
+function goForm() { showScreen('screen-form'); }
+</script>
+</body>
+</html>
